@@ -1,3 +1,0 @@
-https://varunkruthiventi.medium.com/distributed-locking-with-redis-af4e7d80b503
-
-This blog has the low-level implementation details for distributes locks, although I don't think the real problems are discussed or the solution is provided. It covers how you can implement locking(and unlocking) for a Movie booking system. It is very much like temporary booking a seat. Before booking, we need to acquire the lock, if the lock has been already acquired(which can be checked as Redis is working as a distrubited lock store), we do not prceed. While booking we first acquire the lock on the seat.

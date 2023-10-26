@@ -4,18 +4,33 @@
     "type": "split",
     "children": [
       {
-        "id": "67debf0324e90417",
+        "id": "f1031345177e7230",
         "type": "tabs",
         "children": [
           {
-            "id": "cc8e9a932d25c2cd",
+            "id": "1ae8371f07cd98be",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "pdf-annotator",
+              "state": {
+                "file": "Books/DDI Annotations.md"
+              }
+            }
+          },
+          {
+            "id": "860e560f6e603867",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Books/DDI Notes.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -65,7 +80,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "7014158e5986fd3f",
@@ -81,6 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Books/DDI Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Books/DDI Notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +136,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Books/DDI Notes.md"
+              }
             }
           }
         ]
@@ -138,6 +158,28 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f8f7a9862db50821",
-  "lastOpenFiles": []
+  "active": "860e560f6e603867",
+  "lastOpenFiles": [
+    "Books/DDI Annotations.md",
+    "Books/DDI Notes.md",
+    "Books/DDI.pdf",
+    "Books/Designing Data-Intensive Applications - Martin Kleppmann.pdf",
+    "Highlights for Designing Data-Intensive Applications - Martin Kleppmann.md",
+    "Concepts/Distributed Systems/Gossip Protocol.md",
+    "Designing Data-Intensive Applications - Martin Kleppmann.pdf",
+    "Books",
+    "Systems/Storage/Cassandra.md",
+    "Concepts/Storage/Cache and cache types.md",
+    "Systems/Template.md",
+    "Concepts/Storage/Blob Storage.md",
+    "Concepts/Request Lifecycle.md",
+    "Concepts/Storage/ACID Properties.md",
+    "Concepts/Distributed Systems/Distrubutes Locks.md",
+    "Systems/Storage/Redis.md",
+    "README.md",
+    "Systems",
+    "Storage/Locking.md",
+    "Concepts/Distributed Systems",
+    "Concepts/Storage"
+  ]
 }

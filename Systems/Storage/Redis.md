@@ -8,7 +8,9 @@ It is an in-memory data structure storage system. String, Hash, List, Set, Sorte
 - LRU driver events (LRU eviction)-
 - Transactions (Transactions) 
 - Different levels of disk persistence (Persistence)
-    - Redis uses something like a WAL to update the data. This WAL is flushed into the disk at regular intervals. As per my understanding this interval can be configued according to the needs. A less interval will provide more durability to the data and less write throughput and vice-versa. Also, flushing can be completely turned off to make it a good network data cache.
+    - Using WAL
+    - Snapshots, interval can be coinfigured
+    - No persistence at all
 - Redis sentry and automatic partition (Cluster) to provide high availability
 
 ### Applications

@@ -5,7 +5,7 @@ Use Case: mapping keys for a kv service. This service contains server cluster.
 First let's understand simple hashing to outline the challenges.
 
 ## Simple Hashing
----
+
 ![alt text](./.resources/simple_hashing.png)
 In Simple hashing, we use a hash function which hashes the key to a particular service. In this case we need to use the number of servers to define the location of key. 
 In other words, we say each server contains the range of keys.
@@ -18,7 +18,7 @@ Few challenges which might come up:
 - Node rebuilding will add load on the server containing the replica
 
 ## Consistent Hashing
----
+
 We use the hashing space from the hash fucntion and imagine a circle like this:
 
 ![alt text](./.resources/hashing_circle.png)

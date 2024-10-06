@@ -1,7 +1,9 @@
 ## Overview
 
 Dynamo is a distrubuted kv storage architecture, it is designed to be **highly available**, scalable, eventually consistent, persistent(durable) and completely decentralized.
+
 Availbility is the preferred over consistency and flexibility is provided for consistency. Dynamo is also called zero-hop DHT (Disctributed Hash Table), as it forwards the client request to the right node(coordinator node) using the cluster-aware service.
+
 The architecture has influenced cassandra, dynamdb, voldemort etc.
 
 

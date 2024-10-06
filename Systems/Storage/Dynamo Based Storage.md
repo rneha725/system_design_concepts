@@ -6,16 +6,17 @@ Availbility is the preferred over consistency and flexibility is provided for co
 
 The architecture has influenced cassandra, dynamdb, voldemort etc.
 
-
 ## Uses
+
 - **why is it developed**: to create a highly avaialable storage and although it can also provide high consistency(with performance compromises), it is not suitable for highly consistent use cases.
 - **Use Cases**: 
 
-How it works?
+## How it works?
 
 Dynamo is made highly available by introducing redundancy and handling node failires.
 
-Key points:
+### Key points
+
 - Uses [consistent hashing](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Distributed%20Systems/Consistent%20Hashing.md) to serve the request and key distribution
 - Stores replicas in backup nodes
 - Uses [sloppy quorum and hinted handoff](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Distributed%20Systems/Consistent%20Hashing.md) to serve requests, this makes dynamo based systems to be available even during the node failures -> **"always writable"**
@@ -34,23 +35,29 @@ Key points:
 
 ### APIs
 
-get(key) : The get operation finds the nodes where the object
+#### **get(key)** 
+The get operation finds the nodes where the object
 associated with the given key is located and returns either a single
 object or a list of objects with conflicting versions along with a context .
 The context contains encoded metadata about the object that is
 meaningless to the caller and includes information such as the version
 of the object (more on this below).
 
-put(key, context, object) : The put operation finds the nodes where
+Dynamo’s get() request will go through the following steps:
+1. The coordinator requests the data version from N − 1 highest-ranked
+healthy nodes from the preference list.
+2. Waits until R − 1 replies.
+3. Coordinator handles causal data versions through a vector clock.
+4. Returns all relevant data versions to the caller.
+
+#### **put(key, context, object)**
+The put operation finds the nodes where
 the object associated with the given key should be stored and writes the
 given object to the disk. The context is a value that is returned with a
 get operation and then sent back with the put operation. The context
 is always stored along with the object and is used like a cookie to verify
 the validity of the object supplied in the put request.
 
-A preference list is the N healthy nodes in the consistent hash ring. Hinted handoff is used if the main server is unavailable.
-
-### ‘put()’ process #
 Dynamo’s put() request will go through the following steps:
 1. The coordinator generates a new data version and vector clock
 component.
@@ -59,24 +66,18 @@ component.
 the preference list.
 4. The put() operation is considered successful after receiving W − 1
 confirmation.
-‘get()’ process #
 
-### Dynamo’s get() request will go through the following steps:
-1. The coordinator requests the data version from N − 1 highest-ranked
-healthy nodes from the preference list.
-2. Waits until R − 1 replies.
-3. Coordinator handles causal data versions through a vector clock.
-4. Returns all relevant data versions to the caller.
+A preference list is the N healthy nodes in the consistent hash ring. Hinted handoff is used if the main server is unavailable.
 
-Cassandra and Riak:
+#### Cassandra and Riak:
 
 ![image](https://github.com/user-attachments/assets/0c81f5e6-3aa5-411e-93a7-5db6e87cb55b)
 
-Summary:
-
+## Summary:
 ![image](https://github.com/user-attachments/assets/d5949abf-5309-4680-8ffd-7edc57120b39)
 
-Pros and Cons
+## Pros and Cons
+
 ## Resources
 - Notes resource: [Grokking the Advanced System Design Inyterview](https://github.com/rneha725/Books/blob/main/Compressed%20Grokking%20the%20Advanced%20System%20Design%20Interview-compressed.pdf)
 - [Sloppy Quorum and Hinted Handoff - distributed computed musings](https://distributed-computing-musings.com/2022/05/sloppy-quorum-and-hinted-handoff-quorum-in-the-times-of-failure/)

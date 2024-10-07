@@ -8,7 +8,7 @@ In Cassandra, we have multiple nodes in a cluster. Data is distributed among the
 ## How it serves the data?
 ---
 
-The requestor can connect to any node in the cluster and the system is able to serve the data. All the nodes remain in sync with the help of [[Gossip Protocol|gossip protocol]].
+The requestor can connect to any node in the cluster and the system is able to serve the data. All the nodes remain in sync with the help of [Gossip Protocol](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Distributed%20Systems/Gossip%20Protocol.md).
 It is a key partitioned row data store.
 
 As stated above, Cassandra has a cluster and it is generally contains multiple data centers and these datacenters in turn contain the nodes. Each node contains a piece of data for the cluster, as well as the replica for some other node(s). Whenever a request comes, any node can receive it and then it works as a coordinator and connects the request to the node which contains the relevant data but still the coordinator works as a proxy.
@@ -28,6 +28,7 @@ Cassandra is developed for high availability and to handle heavy workloads acros
 - Data partitioning: Uses [consistent hashing](https://github.com/rneha725/system_design_concepts/blob/main/Systems/Storage/Dynamo%20Based%20Storage.md#:~:text=Uses-,consistent%20hashing,-to%20serve%20the) for data paritioning
 - Replication: Replication is done within the cluster and across the cluster. Intra-cluster we have replication factor, which copies the data to next n - 1 nodes within the cluster. For inter-cluster, a request is forwarded to the other data center, this cluster uses its own relication factor.
 - Consitetency Model: tunable consistency. When the cluster cannot meet the consistency levelspecified by the client, Cassandra fails the write request and does not store a hint. Snitch Component: It is responsible for getting the fastest replica which can respond. It has the information of all the network topology.
+- Uses [gossip protocol](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Distributed%20Systems/Gossip%20Protocol.md) to detect any failures, we have seed nodes which are new nodes and more discoverble in the cluster so that the node quickly becomes part of this arrangement. Here, Cassandra also uses heatbeats, but the algorithm is adjusted according to the past records of the nodes and the timeout of heatbeat is decided on the past and other network failures.
 
 ### Data Partitioning:
 Cassandra's primary key is used to identofy a row, primary key has two parts: 

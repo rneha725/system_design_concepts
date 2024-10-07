@@ -27,7 +27,7 @@ Cassandra is developed for high availability and to handle heavy workloads acros
 ## How it works
 - Data partitioning: Uses [consistent hashing](https://github.com/rneha725/system_design_concepts/blob/main/Systems/Storage/Dynamo%20Based%20Storage.md#:~:text=Uses-,consistent%20hashing,-to%20serve%20the) for data paritioning
 - Replication: Replication is done within the cluster and across the cluster. Intra-cluster we have replication factor, which copies the data to next n - 1 nodes within the cluster. For inter-cluster, a request is forwarded to the other data center, this cluster uses its own relication factor.
-- Consitetency Model: tunable consistency. When the cluster cannot meet the consistency levelspecified by the client, Cassandra fails the write request and does not store a hint. For a 
+- Consitetency Model: tunable consistency. When the cluster cannot meet the consistency levelspecified by the client, Cassandra fails the write request and does not store a hint. 
 
 ### Data Partitioning:
 Cassandra's primary key is used to identofy a row, primary key has two parts: 
@@ -41,7 +41,7 @@ Cassandra's primary key is used to identofy a row, primary key has two parts:
 ## Consistency Model
 **write:** It has different types of consistency model for writes, refer to the educative book for it. With other normal consistency model where we are writing to a fixed number of replicas within and out of data centers, we have 'any' as consistency level, where a write can be performed on any node, in case the target node is down. This write is saved in hints file on the node and it is not used for reads. When the failed node comes back, this node pushes the value to the target node. Cassandra, keeps these hints for 3 hours only and after that deletes the data, this is useful in cases when a node is in the failed state for sometime and it will get a lot of write requests when it comes back again. Although, this also means that now the resurrected node will have the stale data. Cassandra relies on **read-replairs** for this.
 
-**reads**: 
+**reads**: Reads are also responsible for read-repairs. Snitch is a component reponsible for forwearding the read requests to fastest nodes, the assigned node then do the read-repairs on all the replica nodes. To see if the data mismatches on different machine, [checksum](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Checksum.md) is used.
 
 <img width="1510" alt="image" src="https://github.com/user-attachments/assets/a65d63b2-c054-4cd5-bede-08632192f8fa">
 

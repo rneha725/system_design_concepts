@@ -28,7 +28,17 @@ Cassandra is developed for high availability and to handle heavy workloads acros
 - Data partitioning: Uses [consistent hashing](https://github.com/rneha725/system_design_concepts/blob/main/Systems/Storage/Dynamo%20Based%20Storage.md#:~:text=Uses-,consistent%20hashing,-to%20serve%20the) for data paritioning
 - Replication: Replication is done within the cluster and across the cluster. Intra-cluster we have replication factor, which copies the data to next n - 1 nodes within the cluster. For inter-cluster, a request is forwarded to the other data center, this cluster uses its own relication factor.
 - Consitetency Model: tunable consistency. When the cluster cannot meet the consistency levelspecified by the client, Cassandra fails the write request and does not store a hint. Snitch Component: It is responsible for getting the fastest replica which can respond. It has the information of all the network topology.
-- Uses [gossip protocol](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Distributed%20Systems/Gossip%20Protocol.md) to detect any failures, we have seed nodes which are new nodes and more discoverble in the cluster so that the node quickly becomes part of this arrangement. Here, Cassandra also uses heatbeats, but the algorithm is adjusted according to the past records of the nodes and the timeout of heatbeat is decided on the past and other network failures.
+- Uses [gossip protocol](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Distributed%20Systems/Gossip%20Protocol.md) to detect any failures, we have seed nodes which are new nodes and more discoverble in the cluster so that the node quickly becomes part of this arrangement. Here, Cassandra also uses heatbeats, but the algorithm is adjusted according to the past records of the nodes and the timeout of heatbeat is decided on the past and other network failures. Uses generation number along with the node info, a generation number for a node monotonically increases when it restarts.
+- Storage:
+  - write operation: Cassandra's storage is done on a commit log (durability and creash recovery), memTable and SSTable with the compaction running periodically.
+  - read operation:
+    - row cache: contains the cache for whole row
+    - Bloom Filters: on SSTable
+    - key cache: cache to the offset of the key in SSTable
+    - Partition Summary file: an another range index on the partition file (only on keys), stored in memory
+    - Partition index file: stored on disk, index info on the SSTable
+    <img width="653" alt="image" src="https://github.com/user-attachments/assets/f2010672-31fd-46a3-ac80-4b1fb5755de6">
+
 
 ### Data Partitioning:
 Cassandra's primary key is used to identofy a row, primary key has two parts: 
@@ -45,6 +55,15 @@ Cassandra's primary key is used to identofy a row, primary key has two parts:
 **reads**: Reads are also responsible for read-repairs. Snitch is a component reponsible for forwearding the read requests to fastest nodes, the assigned node then do the read-repairs on all the replica nodes. To see if the data mismatches on different machine, [checksum](https://github.com/rneha725/system_design_concepts/blob/main/Concepts/Checksum.md) is used.
 
 <img width="1510" alt="image" src="https://github.com/user-attachments/assets/a65d63b2-c054-4cd5-bede-08632192f8fa">
+
+
+## Storage
+Uses Google's BigTable like storage.
+- Commit log: it is crash recovery mechanism in cassandra, every write in a node is first done on a WAL file, only after this it goes to memtable, if the write fails here, the write as a while is failed for that node.
+- MemTable: This is an in-memory storage, uses partition key and clustering key for storage. Once full, it is flushed to SSTable(Sorted String Table), to flush the values to the disk.
+- SSTable: Sorted String Table, this is an on-disk immutable storage. A read is done on both, memtable and SSTable. One table's data goes into one SSTable.
+
+<img width="1143" alt="image" src="https://github.com/user-attachments/assets/9d375a4c-dc55-48aa-ab58-2213fedec851">
 
 
 #### Definition of coordinator node

@@ -27,7 +27,7 @@ Cassandra is developed for high availability and to handle heavy workloads acros
 ## How it works
 - Data partitioning: Uses [consistent hashing](https://github.com/rneha725/system_design_concepts/blob/main/Systems/Storage/Dynamo%20Based%20Storage.md#:~:text=Uses-,consistent%20hashing,-to%20serve%20the) for data paritioning
 - Replication: Replication is done within the cluster and across the cluster. Intra-cluster we have replication factor, which copies the data to next n - 1 nodes within the cluster. For inter-cluster, a request is forwarded to the other data center, this cluster uses its own relication factor.
-- Consitetency Model: tunable consistency. When the cluster cannot meet the consistency levelspecified by the client, Cassandra fails the write request and does not store a hint. 
+- Consitetency Model: tunable consistency. When the cluster cannot meet the consistency levelspecified by the client, Cassandra fails the write request and does not store a hint. Snitch Component: It is responsible for getting the fastest replica which can respond. It has the information of all the network topology.
 
 ### Data Partitioning:
 Cassandra's primary key is used to identofy a row, primary key has two parts: 

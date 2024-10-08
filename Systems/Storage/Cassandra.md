@@ -38,7 +38,8 @@ Cassandra is developed for high availability and to handle heavy workloads acros
     - Partition Summary file: an another range index on the partition file (only on keys), stored in memory
     - Partition index file: stored on disk, index info on the SSTable
     <img width="653" alt="image" src="https://github.com/user-attachments/assets/f2010672-31fd-46a3-ac80-4b1fb5755de6">
-
+- Compaction: Compaction is done on SSTable to make the size smaller and hence reads faster.
+- Tombstones: 
 
 ### Data Partitioning:
 Cassandra's primary key is used to identofy a row, primary key has two parts: 

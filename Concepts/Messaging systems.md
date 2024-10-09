@@ -5,4 +5,4 @@ A messaging system is used to enable following:
 
 ## Types of messaging systems
 - Messaging queue: works as a queue, each message is consumed by one consumer.
-- Publish-susbcribe: a single message can be consumed by multiple subscribers.
+- Publish-susbcribe: a single message can be consumed by multiple subscribers. The system that stores the message is generally called broker.

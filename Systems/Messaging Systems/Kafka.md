@@ -3,6 +3,11 @@ Kafka is [messaging system](https://github.com/rneha725/system_design_concepts/b
 
 ## Applications
 
+- It was first developed to process clickstream like data at linkedin.
+- To store messages
+- streaming real time data
+- high throuput between entities
+
 ## How it works?
 
 ## Pros and cons: tradeoffs

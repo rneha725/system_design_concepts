@@ -38,7 +38,16 @@ Kafka is [messaging system](https://github.com/rneha725/system_design_concepts/b
   number of consumers = number of paritions: each consumer is consuming from unique partition
 - Broker controller: There is one broker in the kafka cluster which performs the admin task of handling the introduction of a new broker, adding parititons, adding leaders, keep in checking the health of other brokers.
     - [Split brain](https://github.com/rneha725/system_design_concepts/blob/main/Systems/General%20issues%20in%20distributed%20systems.md#split-brain): if a controller dies, another is elected as the new one. But say the other one comes back as the new zombie controller. Then? this is a split brain issue where there are two dedicated service where only one central service is required.
-    - Generational clock to solve this: each new broker is assigned a monotonically increasing value by using epoch time, other brokers only accept requests from the highest controller value. 
+    - Generational clock to solve this: each new broker is assigned a monotonically increasing value by using epoch time, other brokers only accept requests from the highest controller value.
+- Producer semantics: [durability vs performance]
+    - Fire and forget: producer publishes and does not wait for any confirmation from broker.
+    - Committed to leader: if leader crashes before quorum knows about the record, then it might be lost
+    - Committed to leader and quorum: highest durability with performance hit.
+- Consumer semantics: [deliery]
+    - at most once: when upon receiving the record consumer acks and then processes, if it fails, the message is lost
+    - at least once: first processes, then commits the offset to the broker, if after processing the consumer crashes, the record is delivered again
+    - exactly one: in one transaction commit and processing is perfomed, the whole transaction is rolledback when consumer crashes, hard to achieve. Decreases throuput.
+- Retention policies: upto a time or upto a size.
 
 ### Zookeeper
 It is a distributed confuguration and synchronization service, it is read-optimized kv store, used to coordinate among brokers in a cluster. It stores the offset for consumer group's consumers. Stores the leader and followers for a record.ACLs. All the critical data is stored in the zookeeper cluster. Kafka producers, now, do not connect to zookeeper for the partition info for a key, but it happens through a call to any broker(not sure why?????)
@@ -52,6 +61,14 @@ It is a distributed confuguration and synchronization service, it is read-optimi
 ## Kafka Guarantees
 - Records in a parition are always in sequence. Not across topics.
 - Record related to one key always written to one partition.
+
+## Performance
+- Scalability: Two important features of Kafka contribute to its scalability. A Kafka cluster can easily expand or shrink (brokers can be added or removed) while in operation and without an outage. A Kafka topic can be expanded to contain more partitions. Because a partition cannot expand across multiple brokers, its capacity is bounded by broker disk space. Being able to increase the number of partitions and the number of brokers means there is no limit to how much data a single topic can store.
+- Fault-tolerance and reliability: Kafka is designed in such a way that a broker failure is detectable by ZooKeeper and other brokers in the cluster. Because each topic can be replicated on multiple brokers, the cluster can recover from broker failures and continue to work without any disruption of service.
+- Throughput: By using consumer groups, consumers can be parallelized, so that multiple consumers can read from multiple partitions on a topic, allowing a very high message processing throughput.
+- Low Latency: 99.99% of the time, data is read from disk cache and RAM; very rarely, it hits the disk
+
+
 ## Pros and cons: tradeoffs
 
 ## Resources

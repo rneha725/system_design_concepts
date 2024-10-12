@@ -24,4 +24,5 @@ On the other hand, using a quorum based lederless architecture, we need to do re
 </details>
 
 ## Problems and particular sysmte which can be used
-> CockroachDB: it has inbuild CDC
+> CockroachDB: it has inbuild CDC [refer](https://github.com/rneha725/system_design_concepts/tree/main/Systems/Storage)
+> 

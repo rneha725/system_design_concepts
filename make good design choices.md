@@ -1,5 +1,7 @@
-<sub>Note: these are some of the design choices which I collected while preparing for interviews. They might not be complete or sometimes be faulty. I will try to quote the reason while making a choice for a particular problem. It is not about building the whole system too, just how to solve the problem for the part of a bigger system.</sub>
+<sub>Note: these are some of the design choices which I collected while preparing for interviews. They might not be complete or sometimes be faulty. I will try to quote the reason while making a choice for a particular problem. It is not about building the whole system too, just how to solve the problem for the part of a bigger system. Later, I realised I can add another section which covers existing tools to help some of the predefined problems.</sub>
 
+
+## Problems and solution with a generic architecture
 <details><summary><h3>Problem: Read consistency</h4></summary>
 
 -----
@@ -20,3 +22,6 @@ On the other hand, using a quorum based lederless architecture, we need to do re
 
 ------
 </details>
+
+## Problems and particular sysmte which can be used
+> CockroachDB: it has inbuild CDC

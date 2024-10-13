@@ -22,7 +22,11 @@ Pay-out flow: When seller's money needs to be credited, this flow starts from Am
 
 ### Payout flow
 - ![image](https://github.com/user-attachments/assets/e583250c-7230-4441-99e2-226f65287e50)
-Each the step defined in the diagram can fail, to make it right, system performs reconciliation, say, each day. PSP can provide the daily transactions can it can be match against the ledger. According to the mismatch either the system handles it or it is handled manually by the finance team. 
+- In step 2, a nonce is a unique id sent for the particular payment.
+Each the step defined in the diagram can fail, to make it right, system performs reconciliation, say, each day. PSP can provide the daily transactions can it can be match against the ledger. According to the mismatch either the system handles it or it is handled manually by the finance team.
+
+### Retries
+Retries need to be idenmpotent so a retry won't make the system inconsistent. Generally, an exponential retry is used for network failures. 
 
 ### Resources:
 - Double Ledger entry: [Square's Blog](https://developer.squareup.com/blog/books-an-immutable-double-entry-accounting-database-service/)

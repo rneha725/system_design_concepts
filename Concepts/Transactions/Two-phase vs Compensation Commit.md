@@ -28,6 +28,9 @@ For example, say we want to transfer balance from one wallet to another. In this
 
 ---
 
+![image](https://github.com/user-attachments/assets/77ae3ef8-0b8a-484e-826d-6f60babe94b6)
+
+
 ### **Failure Scenarios in 2PC and Recovery Strategies**:
 
 1. **Participant Failure**:
@@ -51,6 +54,9 @@ For example, say we want to transfer balance from one wallet to another. In this
 - **TCC** is a pattern used in distributed systems where each action is split into three phases: **Try** (prepare resources), **Confirm** (commit if all actions succeed), and **Cancel** (rollback if any action fails). It ensures eventual consistency.
 
 ---
+
+![Screenshot 2024-10-13 at 6 31 07 PM](https://github.com/user-attachments/assets/685e2ca2-a2eb-4d71-bd6c-c91d2f276b02)
+
 
 ### **Low-Level Description of Each Step in TCC**:
 

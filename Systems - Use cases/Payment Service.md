@@ -5,17 +5,17 @@ Use case: Amazon's payment service, customer and seller flow. Also, implementing
 Pay-in flow: When a customer starts checking out, the items in the cardmwill result in payments to multiple sellers. 
 Pay-out flow: When seller's money needs to be credited, this flow starts from Amazon's account to seller's account.
 
-Components:
-- Payment service: internal payment service that performs the required transactions.
-- PSP: Payment Service provides: payments can happen through different payment methods, credit card, UPI, netbanking etc. Instead of building in the systems(which is really complex), a third party PSP is used. A PSP can also provide all the transtion happened on a day. A PSP can help in two ways:
+### Components:
+- **Payment service**: internal payment service that performs the required transactions.
+- **PSP**: Payment Service provides: payments can happen through different payment methods, credit card, UPI, netbanking etc. Instead of building in the systems(which is really complex), a third party PSP is used. A PSP can also provide all the transtion happened on a day. A PSP can help in two ways:
   - Only facilitate the payment and not store the sensitive information of the user, in that case the company has to do it.
   - To also, store the sensitive info and facilitate the payment.
-- Ledger: Ledger contains all the transaction on an account level. In the resources, there is a link to Square's double ledger architecture. The idea is to basically maintain a credit/debit etc such that the sum of all is always zero. They are using Spanner, which is  Google's distributed SQL db.
+- **Ledger**: Ledger contains all the transaction on an account level. In the resources, there is a link to Square's double ledger architecture. The idea is to basically maintain a credit/debit etc such that the sum of all is always zero. They are using Spanner, which is  Google's distributed SQL db.
   - Double entry ledger has these 3 properties:
     - Immutability: once data is written cannot be changed, if there is any error, a corrective entry is added.
     - Auditability
     - Zero-sum entries are getting added.  
-- CDC, if required: an outbox pattern can be used to implement this.
+- **CDC**, if required: an outbox pattern can be used to implement this.
 
 ### Pay-in flow
 ![image](https://github.com/user-attachments/assets/14671642-2538-4928-ac72-a52bb798d747)

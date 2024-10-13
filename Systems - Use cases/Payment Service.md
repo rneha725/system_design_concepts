@@ -7,7 +7,9 @@ Components:
 - Payment service: internal payment service that performs the required transactions.
 - PSP: Payment Service provides: payments can happen through different payment methods, credit card, UPI, netbanking etc. Instead of building in the systems(which is really complex), a third party PSP is used. A PSP can help in two ways:
   - Only facilitate the payment and not store the sensitive information of the user, in that case the company has to do it.
-  - To also, store the sensitive info and facilitate the payment. 
+  - To also, store the sensitive info and facilitate the payment.
+  - ![image](https://github.com/user-attachments/assets/e583250c-7230-4441-99e2-226f65287e50)
+
 - Ledger: Ledger contains all the transaction on an account level. In the resources, there is a link to Square's double ledger architecture. The idea is to basically maintain a credit/debit etc such that the sum of all is always zero. They are using Spanner, which is  Google's distributed SQL db.
 - CDC, if required: an outbox pattern can be used to implement this.
 

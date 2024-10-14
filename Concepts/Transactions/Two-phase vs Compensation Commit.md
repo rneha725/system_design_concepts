@@ -41,6 +41,8 @@ For example, say we want to transfer balance from one wallet to another. In this
    - **During Prepare**: If the coordinator crashes before gathering votes, participants remain blocked, holding locks.
    - **After Commit Decision**: If the coordinator fails before sending the commit/abort message, participants remain in the prepared state, risking resource blocking.
 
+The resource locking can be prevented by having a timed lock on the resources. This way, if coordinator fails at any step, it is made sure that the lock will be released if the commit does not happen timely.
+
 ---
 
 ### **Applications of 2PC and When to Use**:

@@ -14,7 +14,7 @@ The core principle is that **reading and writing operations often have different
 
 3. **Data Synchronization**: Since the command and query models are separate, they need to stay in sync. This is often done through **event-driven communication**: when the command model processes a state change, it emits an event that the query side listens to. The query side then updates its read model based on that event.
 
-In practice, this pattern is often paired with **Event Sourcing** because events can be used as the "bridge" between the command and query sides.
+In practice, this pattern is often paired with **[Event Sourcing](../Audit%20and%20trace/Event%20Sourcing.md)** because events can be used as the "bridge" between the command and query sides.
 
 ### **CQRS with State Machines**
 
@@ -74,3 +74,6 @@ CQRS is used in a wide range of applications where the separation of read and wr
 ### **Conclusion**
 
 CQRS is a powerful design pattern that excels in situations where **reads and writes have different requirements**, such as complex business logic, real-time systems, or high-performance applications. However, it introduces a lot of complexity in terms of **synchronization, eventual consistency, and development overhead**, making it more suitable for systems where these trade-offs are justified by the benefits. When paired with patterns like **event sourcing**, it can enable powerful capabilities like auditing, time travel, and scalable event-driven systems.
+
+## Resources:
+- Event Sourcing: [Event Sourcing](../Audit%20and%20trace/Event%20Sourcing.md)

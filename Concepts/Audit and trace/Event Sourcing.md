@@ -8,7 +8,7 @@ For example, in a banking application, instead of storing an account's balance d
 
 1. **Auditing and Traceability**: Since each state change is stored as an event, the entire history of state transitions is available. This is useful for auditing, debugging, or tracing the flow of the system.
 2. **Reliable Reconstruction**: The current state can be reconstructed by replaying events. This allows the system to rebuild the state from scratch if necessary.
-3. **Decoupling Components**: Event streams can be used to decouple various parts of the system, as different services can react to events independently. This also supports **CQRS** (Command Query Responsibility Segregation), where the write model (events) is separated from the read model.
+3. **Decoupling Components**: Event streams can be used to decouple various parts of the system, as different services can react to events independently. This also supports **[CQRS](../Design%20Patterns/Command%20Query%20Responsibility%20Segregation.md)** (Command Query Responsibility Segregation), where the write model (events) is separated from the read model.
 4. **Temporal Queries**: You can query the state of the system as it was at any point in time by replaying events up to that point.
 5. **Flexibility**: If new requirements arise, the event history allows you to introduce new ways of processing or deriving data without changing the past events.
 
@@ -57,3 +57,7 @@ Event sourcing is most useful when:
 - You want to separate the read and write models for performance (CQRS).
 
 It may not be worth the complexity if your system is relatively simple or if immediate consistency is paramount.
+
+## Resources:
+
+- CQRS: [CQRS](../Design%20Patterns/Command%20Query%20Responsibility%20Segregation.md)

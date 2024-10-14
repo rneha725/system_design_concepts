@@ -50,6 +50,25 @@ The resource locking can be prevented by having a timed lock on the resources. T
 - **Distributed Databases**: ACID-compliant transactions across distributed data nodes.
 - **When to Use**: Strong consistency and atomic operations are critical; use 2PC when transaction integrity must be guaranteed.
 
+### Trade offs
+Pros:
+- simple to implement
+- strong consistency
+- C > A
+- guarantees atomocity
+
+Cons:
+- Latency and perfomance
+- coordinator is a SPOF
+- C > A
+- Increased resource usages, as we are locking everything in one step
+- limited scalability
+
+### Alternative to 2PC:
+- 3PC:
+- Raft or Paxos
+- eventual consistency
+  
 ---
 
 ### **What is TCC (Try-Confirm/Cancel)?**

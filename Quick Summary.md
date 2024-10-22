@@ -24,5 +24,12 @@ Apart from other problems
   - conflict: otherwise take max of both and repair, if not possible, then branching -> manually merged 
 - on write: CRDT types
 
+## Leaderless replication
+- anti-entropy
+- read-repair
+- Quorum based: (w+r)>n
+- two writes are writing to same key but different replica: write conflict.
+- Sloppy quorum and hinted handoff
+
 ## Concurrent writes
 - Detecting concurrent write is all about what the client reads before the write.

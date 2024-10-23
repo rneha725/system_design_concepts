@@ -13,6 +13,8 @@ Use Cases
 - [ ] Chat messanger
 - [ ] Feed systems
   - serving the feed with low latency
+  - popular users
 - [ ] video streaming
   - uploading/downloading huge files - chunking
   - comment editing or child comments
+  - popular videos

@@ -31,5 +31,14 @@ Apart from other problems
 - two writes are writing to same key but different replica: write conflict.
 - Sloppy quorum and hinted handoff
 
+## Sharding/Partitioning
+- key range division : simple but hotspot, easier for range queries.
+- key hash division : use consistent hashing. Good hash => even distribution. Still hotspot.
+- Maintain a global and optionally a secondary index.
+- Dynamic paritioning might result into more network usage in case of faulty failure detenction.
+- Only when it is absolutely necessary.
+- Use coordinator or gossip protocol.
+- Rebalance is complex.
+
 ## Concurrent writes
 - Detecting concurrent write is all about what the client reads before the write.

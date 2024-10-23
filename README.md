@@ -15,3 +15,4 @@ Use Cases
   - serving the feed with low latency
 - [ ] video streaming
   - uploading/downloading huge files - chunking
+  - comment editing or child comments

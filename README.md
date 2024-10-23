@@ -7,6 +7,11 @@ Use Cases
 
 ## Use cases to cover most systems
 - [ ] TinyURL
+  - generating unique hashes or storing the unique value
 - [ ] PasteBin
+  - uploading and downloading huge files - chunking
 - [ ] Chat messanger
 - [ ] Feed systems
+  - serving the feed with low latency
+- [ ] video streaming
+  - uploading/downloading huge files - chunking

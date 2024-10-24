@@ -40,5 +40,22 @@ Apart from other problems
 - Use coordinator or gossip protocol.
 - Rebalance is complex.
 
+## Isolation/Serializability
+- It is too expernsice to provide full isolation so dbs have some optimizations
+- Dirty reads: reading a non-committed write. sol: remember the old value.
+- Dirty write: overwritting not committed data. sol: have a lock.
+- Isolation levels:
+  - read committed isolation: weakest. Prevents dirty reads and writes.
+- Read skew: long reads, while reading rows change. sol: snapshot isloation. Snapshot isolation keeps a monotonically increasing transaction id. When rows are updated, a transaction id will get associated to it. When a read comes, we try to read the maximum value which is less than the read transaction id.
+- Lost updates: two threads are trying to update a value by some number. They read and added 1000. If two threads read it at the same time, they might try to add the value and write to the row. => inconsistent state. Sol: atomic writes, explicit locking, automatic db detection
+  - Atomic counters: shared variables between threads are updated only using atomic variables. For a single instance this can work better than locking, but for distrubuted systems, it can introduce latency and contention.
+  - Locking: can lead to bugs
+  - Automatic db detection: in conjuction with db snapshot, we can fail a write if it read some other value which is not updated by some other write.
+  - These techniquees might not work for multi-leader or leaderless setup as these solutions assume one copy of data.
+- Write skew: lock reading rows.
+- <img width="300" alt="image" src="https://github.com/user-attachments/assets/7bb88942-2931-44b9-b309-fafc0e4be9cf">
+
+
+
 ## Concurrent writes
 - Detecting concurrent write is all about what the client reads before the write.

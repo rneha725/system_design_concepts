@@ -1,5 +1,7 @@
 A **database trigger** is a procedural code that is automatically executed in response to certain events on a particular table or view in a database. These events typically include operations like `INSERT`, `UPDATE`, or `DELETE`. Triggers can be used to enforce business rules, automatically update certain fields, or even audit changes made to data.
 
+**Ideal for local db operations.**
+
 ### 1. **How to Create a DB Trigger**
 
 Creating a trigger is generally straightforward, but it depends on the specific database system you're using (e.g., MySQL, PostgreSQL, Oracle, SQL Server). Here's a general structure for creating a trigger:

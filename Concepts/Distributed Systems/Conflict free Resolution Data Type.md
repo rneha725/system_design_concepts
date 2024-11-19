@@ -17,6 +17,8 @@ This is by MArtin Klepman, and he has explained the low level detail of the CRDT
 
 ### A Simple use case:
 
+in the images values like 4b means -> (max int + 1) + (server_id)
+
 <img width="1052" alt="image" src="https://github.com/user-attachments/assets/11677452-9c26-4608-8cb9-0734d5946b8e">
 
 ### An insertion 

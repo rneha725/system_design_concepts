@@ -26,3 +26,4 @@
 - Searching the encrypted logs
 - Storing the logs
 - Sorting logs using the vector clocks
+- adding traceability for logs
